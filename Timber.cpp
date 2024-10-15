@@ -7,10 +7,10 @@ using namespace sf;
 int main()
 {
 	// Create a video mode object VideoMode vm(1920, 1080);
-	// VideoMode vm(600, 400);
+	VideoMode vm(1920, 1080);
 
 	// Create and open a window for the game
-	RenderWindow window(VideoMode(800, 600), "Timber!!!");
+	RenderWindow window(vm, "Timber!!!");
 
 	// Create a texture to hold a graphic on the GPU Texture
 	Texture textureBackground;
@@ -90,9 +90,12 @@ int main()
 		****************************************
 		*/
 
-		if (Keyboard::isKeyPressed(Keyboard::Escape))
+		Event event;
+		while (window.pollEvent(event))
 		{
-			window.close();
+			// Close window: exit
+			if (event.type == Event::Closed || Keyboard::isKeyPressed(Keyboard::Escape))
+					window.close();
 		}
 
 		/*
